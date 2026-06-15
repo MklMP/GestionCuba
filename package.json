@@ -1,0 +1,17 @@
+{
+  "name": "gestion-agro",
+  "version": "1.0.0",
+  "description": "Catálogo de productos agropecuarios con panel de administración",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
