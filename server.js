@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const { exec } = require('child_process');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +19,10 @@ try {
   if (!EMAIL_PASS) EMAIL_PASS = cfg.pass || '';
 } catch {};
 
-const USUARIOS_FILE = path.join(__dirname, 'data', 'usuarios.json');
+const DATA_DIR = path.join(__dirname, 'data');
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+
+const USUARIOS_FILE = path.join(DATA_DIR, 'usuarios.json');
 const sessions = new Map();
 const pendingCodes = new Map(); // email -> { code, expires, data }
 
@@ -120,6 +122,21 @@ app.get('/api/productos/:id/imagen/:index', (req, res) => {
   res.send(Buffer.from(base64, 'base64'));
 });
 
+function sendCodeEmail(email, code, nombre, type) {
+  if (!EMAIL_USER || !EMAIL_PASS) { console.error('Email no configurado, código', code, 'no enviado a', email); return; }
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com', port: 465, secure: true,
+    auth: { user: EMAIL_USER, pass: EMAIL_PASS }
+  });
+  const subject = type === 'reset' ? 'Recuperación de contraseña - Gestión Cuba' : 'Código de verificación - Gestión Cuba';
+  const text = type === 'reset'
+    ? `Hola ${nombre},\n\nRecibimos una solicitud para restablecer tu contraseña en Gestión Cuba.\n\nTu código de verificación es: ${code}\n\nEste código expira en 10 minutos.\n\nSi no solicitaste esto, ignorá este mensaje.`
+    : `Hola ${nombre},\n\nGracias por registrarte en Gestión Cuba.\n\nTu código de verificación es: ${code}\n\nEste código expira en 10 minutos.\n\nIngresalo en la aplicación para completar tu registro.`;
+  transporter.sendMail({ from: EMAIL_USER, to: email, subject, text })
+    .then(() => console.log(`Code ${type} sent to ${email}`))
+    .catch(err => console.error(`Code email error (${email}):`, err.message));
+}
+
 // Send verification code for registration
 app.post('/api/auth/send-register-code', (req, res) => {
   const { username, nombre, email, telefono, password } = req.body;
@@ -132,11 +149,7 @@ app.post('/api/auth/send-register-code', (req, res) => {
   if (usuarios.find(u => u.email && u.email.toLowerCase() === email.toLowerCase())) return res.status(400).json({ error: 'El correo ya está registrado' });
   const code = Math.floor(100000 + Math.random() * 900000).toString();
   pendingCodes.set(email.toLowerCase(), { code, expires: Date.now() + 600000, data: { username, nombre, email: email.toLowerCase(), telefono: telefono || '', password } });
-  const phpScript = path.join(__dirname, 'send_code.php');
-  exec(`php "${phpScript}" "${email}" "${code}" "${nombre}" verify`, { timeout: 15000 }, (err, stdout) => {
-    if (err) console.error('Code email error:', stdout || err.message);
-    else console.log('Verification code sent:', email);
-  });
+  sendCodeEmail(email, code, nombre, 'verify');
   res.json({ success: true, message: 'Código enviado a tu correo Gmail.' });
 });
 
@@ -175,11 +188,7 @@ app.post('/api/auth/send-reset-code', (req, res) => {
   if (!user) return res.status(404).json({ error: 'No hay cuenta con ese correo' });
   const code = Math.floor(100000 + Math.random() * 900000).toString();
   pendingCodes.set(email.toLowerCase(), { code, expires: Date.now() + 600000, data: { userId: user.id } });
-  const phpScript = path.join(__dirname, 'send_code.php');
-  exec(`php "${phpScript}" "${email}" "${code}" "${user.nombre}" reset`, { timeout: 15000 }, (err, stdout) => {
-    if (err) console.error('Reset code email error:', stdout || err.message);
-    else console.log('Reset code sent:', email);
-  });
+  sendCodeEmail(email, code, user.nombre, 'reset');
   res.json({ success: true, message: 'Código enviado a tu correo Gmail.' });
 });
 

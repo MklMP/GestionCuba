@@ -2,3 +2,4 @@ node_modules/
 email-config.json
 server.log
 productos_backup.json
+*.log
