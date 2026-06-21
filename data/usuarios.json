@@ -1,0 +1,26 @@
+[
+  {
+    "id": "5dfd3d9b-4799-4de8-8d12-2129998db4c2",
+    "username": "mkl",
+    "nombre": "ma",
+    "email": "maykelmillan96@gmail.com",
+    "telefono": "59609074",
+    "salt": "de682fd8b33635c0",
+    "password": "4c9c430858c48a5de2eaf7d105a3a3ffa54b7d1c7043ff9240320945f4a3ed7c",
+    "estado": "activo",
+    "verificado": true,
+    "creado": 1781921333681
+  },
+  {
+    "id": "4e67d6b0-f6f3-4fcd-b73f-5936aaa9cfcc",
+    "username": "Mkl3",
+    "nombre": "Maykel",
+    "email": "camilomillanrodriguez@gmail.com",
+    "telefono": "mkl",
+    "salt": "e2ca636cd44bc6a8",
+    "password": "c5acc8f11c1896f47cc18aba901a2f6dce1c2bd07aeb4dc2d56407554774fc69",
+    "estado": "activo",
+    "verificado": false,
+    "creado": 1782013586512
+  }
+]

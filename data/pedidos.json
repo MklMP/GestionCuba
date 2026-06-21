@@ -1,0 +1,167 @@
+[
+  {
+    "id": "21d20dda-334d-49d6-96fb-7106ff556bf4",
+    "nombre": "Maykel",
+    "celular": "59609074",
+    "carnet": "04052361369",
+    "metodoPago": "Tarjeta",
+    "domicilio": true,
+    "direccion": "Reparto Buena Vista, Calle 7 #81, entre Cuba y Martha Abreu",
+    "items": [
+      {
+        "id": "d5e0cb57-fce5-4f52-aa25-546bd5b206da",
+        "nombre": "OTG, COVER, MINAS",
+        "qty": 1,
+        "precio": 0,
+        "moneda": "CUP"
+      },
+      {
+        "id": "340b833c-5a7d-49a2-a8a5-a1ab3c21fd25",
+        "nombre": "Muebles",
+        "qty": 2,
+        "precio": 400000,
+        "moneda": "CUP"
+      },
+      {
+        "id": "cfdff515-41d3-4af3-aba5-ba1136d0b34a",
+        "nombre": "Muebles",
+        "qty": 1,
+        "precio": 200000,
+        "moneda": "CUP"
+      },
+      {
+        "id": "2a72545c-bdd4-4842-885e-fe8c89b2b432",
+        "nombre": "Panel Solar Rigido",
+        "qty": 1,
+        "precio": 270,
+        "moneda": "USD"
+      }
+    ],
+    "total": 600270,
+    "moneda": "CUP/USD",
+    "fecha": "2026-06-15T15:20:04.900Z",
+    "estado": "completado"
+  },
+  {
+    "id": "8e3411f7-2d1c-4b2f-976e-5e8faaa390c2",
+    "nombre": "Maykel",
+    "celular": "59609074",
+    "carnet": "04052361369",
+    "metodoPago": "CUP",
+    "domicilio": false,
+    "direccion": "",
+    "items": [
+      {
+        "id": "e012a09d-6bd4-4a26-825a-302a0bf5eb43",
+        "nombre": "BiciMoto GOVELIX",
+        "qty": 1,
+        "precio": 1650,
+        "moneda": "USD"
+      }
+    ],
+    "total": 1650,
+    "moneda": "USD",
+    "fecha": "2026-06-15T20:41:06.134Z",
+    "estado": "completado"
+  },
+  {
+    "id": "74022c94-ec12-42b5-963f-34d1e2120981",
+    "nombre": "Test",
+    "celular": "+5359609074",
+    "carnet": "",
+    "metodoPago": "CUP",
+    "domicilio": false,
+    "direccion": "",
+    "items": [
+      {
+        "nombre": "Producto 1",
+        "qty": 2,
+        "precio": 100,
+        "moneda": "CUP"
+      }
+    ],
+    "total": 200,
+    "moneda": "CUP",
+    "fecha": "2026-06-15T21:24:53.478Z",
+    "estado": "completado"
+  },
+  {
+    "id": "c82e82e8-6b69-4dd0-a434-ec73039c7ff7",
+    "nombre": "Test Email",
+    "celular": "59609074",
+    "carnet": "",
+    "metodoPago": "CUP",
+    "domicilio": false,
+    "direccion": "",
+    "items": [
+      {
+        "nombre": "Test",
+        "qty": 1,
+        "precio": 100,
+        "moneda": "CUP"
+      }
+    ],
+    "total": 100,
+    "moneda": "CUP",
+    "fecha": "2026-06-15T21:52:15.548Z",
+    "estado": "completado"
+  },
+  {
+    "id": "39efcb10-9e01-42c4-b263-ff66e5e1b880",
+    "nombre": "Maykel",
+    "celular": "59609074",
+    "carnet": "04052361369",
+    "metodoPago": "Tarjeta",
+    "domicilio": false,
+    "direccion": "",
+    "items": [
+      {
+        "id": "98facc44-e86c-47b8-8789-2dae29850766",
+        "nombre": "iPhone 14",
+        "qty": 1,
+        "precio": 320,
+        "moneda": "USD"
+      }
+    ],
+    "total": 320,
+    "moneda": "USD",
+    "fecha": "2026-06-16T14:08:54.931Z",
+    "estado": "pendiente"
+  },
+  {
+    "id": "a4969bd1-c3fa-474d-b88a-7f326cc12f53",
+    "nombre": "JOSE",
+    "celular": "59609074",
+    "carnet": "0234902343",
+    "metodoPago": "Tarjeta",
+    "domicilio": false,
+    "direccion": "",
+    "items": [
+      {
+        "id": "d13132fa-e07c-4e72-8003-95dccab0ed3a",
+        "nombre": "Samsung S25 Ultra",
+        "qty": 1,
+        "precio": 780,
+        "moneda": "USD"
+      },
+      {
+        "id": "6cc1ab3f-7d25-4eea-9eb8-7901c8b18a09",
+        "nombre": "Muebles",
+        "qty": 1,
+        "precio": 180000,
+        "moneda": "CUP"
+      },
+      {
+        "id": "f1cb02eb-4e1a-457a-9a9c-995d3e163638",
+        "nombre": "Samsung S26Ultra",
+        "qty": 1,
+        "precio": 1070,
+        "moneda": "USD"
+      }
+    ],
+    "total": 181850,
+    "moneda": "USD/CUP",
+    "fecha": "2026-06-16T18:29:28.788Z",
+    "estado": "pendiente"
+  }
+]
