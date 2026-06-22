@@ -7,9 +7,12 @@ const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-const DATA_FILE = path.join(__dirname, 'data', 'productos.json');
-const FEEDBACK_FILE = path.join(__dirname, 'data', 'feedback.json');
-const PEDIDOS_FILE = path.join(__dirname, 'data', 'pedidos.json');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+const DATA_FILE = path.join(DATA_DIR, 'productos.json');
+const FEEDBACK_FILE = path.join(DATA_DIR, 'feedback.json');
+const PEDIDOS_FILE = path.join(DATA_DIR, 'pedidos.json');
+const USUARIOS_FILE = path.join(DATA_DIR, 'usuarios.json');
 let EMAIL_USER = process.env.EMAIL_USER || '';
 let EMAIL_PASS = process.env.EMAIL_PASS || '';
 const EMAIL_TO = process.env.EMAIL_TO || 'maykelmillan96@gmail.com';
@@ -18,11 +21,6 @@ try {
   if (!EMAIL_USER) EMAIL_USER = cfg.user || '';
   if (!EMAIL_PASS) EMAIL_PASS = cfg.pass || '';
 } catch {};
-
-const DATA_DIR = path.join(__dirname, 'data');
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-
-const USUARIOS_FILE = path.join(DATA_DIR, 'usuarios.json');
 const sessions = new Map();
 const pendingCodes = new Map(); // email -> { code, expires, data }
 
