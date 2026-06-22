@@ -9,6 +9,14 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+const LOCAL_DATA = path.join(__dirname, 'data');
+if (DATA_DIR !== LOCAL_DATA && fs.existsSync(LOCAL_DATA)) {
+  for (const f of ['productos.json', 'usuarios.json', 'pedidos.json', 'feedback.json']) {
+    const src = path.join(LOCAL_DATA, f);
+    const dst = path.join(DATA_DIR, f);
+    if (fs.existsSync(src) && !fs.existsSync(dst)) fs.copyFileSync(src, dst);
+  }
+}
 const DATA_FILE = path.join(DATA_DIR, 'productos.json');
 const FEEDBACK_FILE = path.join(DATA_DIR, 'feedback.json');
 const PEDIDOS_FILE = path.join(DATA_DIR, 'pedidos.json');
